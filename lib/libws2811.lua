@@ -1,6 +1,6 @@
 local ffi = require("ffi")
 local lib = ffi.load("lib/libws2811.so")
-local class = require("lib/middleclass")
+local class = require("middleclass")
 
 local bor    = bit.bor
 local lshift = bit.lshift
