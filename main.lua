@@ -3,6 +3,8 @@ local socket		= require("socket")
 -- local Matrix		= require("lib.librgbmatrix")
 local MatrixWS2811	= require("lib.libws2811")
 
+local signal = require("posix.signal")
+
 local lpack = require("pack")
 local pack = string.pack
 local upack = string.unpack
@@ -56,12 +58,13 @@ local matrix = MatrixWS2811:new{
 	rgbw = rgbw
 }
 
+
 while true do
 	local data, ip, port = udp:receivefrom()
 	if data then
 		local _, cmd = upack(data, "b")
 
-		-- print("Received: ",ip,port, cmd, #data)
+		print("Received: ",ip,port, cmd, #data)
 
 		if cmd == LED_RGB_888_UPDATE or  cmd == LED_RGB_888 then
 			local _, cmd, ctn, off, len = upack(data, "bbHH")
@@ -84,3 +87,11 @@ while true do
 	end
 	socket.sleep(0.0001)
 end
+
+
+signal.signal(signal.SIGINT, function(signum)
+  print("STOP\n")
+  matrix:stop()
+  -- put code to save some stuff here
+  os.exit(128 + signum)
+end)
