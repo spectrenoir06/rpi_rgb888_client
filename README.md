@@ -10,8 +10,14 @@
 - luarocks5.1 install middleclass
 
 ## run
+```
+sudo luajit main.lua PCM 100 1
+```
 
-luajit main.lua MODE LEDs_NB RGBW
+
+```
+sudo luajit main.lua MODE LEDs_NB RGBW
+```
 
 - mode: PCM, PWM, PWMx2
 - LEDs_NB: LEDs number total
