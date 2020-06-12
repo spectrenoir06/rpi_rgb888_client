@@ -1,6 +1,6 @@
 # rpi_rgb888_client
 
-##deps
+## deps
 
 - sudo apt install luajit
 - sudo apt install luarocks
