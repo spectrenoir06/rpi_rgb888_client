@@ -123,7 +123,7 @@ function MatrixWS2811:initialize(t)
 	if t.rgbw then
 		t.type = SK6812_STRIP_GRBW
 	else
-		r.type = WS2811_STRIP_GRB
+		t.type = WS2811_STRIP_GRB
 	end
 
 	self.strip.freq = t.freq or WS2811_TARGET_FREQ
@@ -140,7 +140,7 @@ function MatrixWS2811:initialize(t)
 	lib.ws2811_init(self.strip)
 end
 
-function MatrixWS2811:setRGB(x,y,r,g,b, w)
+function MatrixWS2811:setRGB(id,r,g,b,w)
 	self.strip.channel[0].leds[id] = bor(b, lshift(g,8), lshift(r,16), lshift(w or 0,24))
 end
 

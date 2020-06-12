@@ -1,7 +1,7 @@
 local ffi			= require("ffi")
 local socket		= require("socket")
 -- local Matrix		= require("lib.librgbmatrix")
--- local MatrixWS2811	= require("lib.libws2811")
+local MatrixWS2811	= require("lib.libws2811")
 
 local lpack = require("pack")
 local pack = string.pack
@@ -72,14 +72,14 @@ while true do
 			for i=1, len do
 				prev,r,g,b = upack(data, "bbb", prev)
 				if r then
-					-- print(i,r,g,b,w)
-					-- matrix:setRGB(i-1,r,g,b)
+				--	print(i,r,g,b)
+					matrix:setRGB(i-1,r,g,b)
 				end
 			end
 		end
 
 		if cmd == LED_RGB_888_UPDATE or cmd == LED_UPDATE then
-			-- matrix:send()
+			matrix:send()
 		end
 	end
 	socket.sleep(0.0001)
